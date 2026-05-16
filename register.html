@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register — Nitro Event</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="logo">Nitro.</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="team.html">Team</a>
+        </div>
+        <a href="register.html" class="btn btn-primary">Register</a>
+    </nav>
+
+    <!-- Header -->
+    <header class="page-header">
+        <h1 class="page-title">Join the Event</h1>
+        <p class="page-subtitle">Reserve your spot today and be part of the most anticipated gathering of the year.</p>
+    </header>
+
+    <!-- Registration Form -->
+    <main class="container">
+        <div class="form-container">
+            <form onsubmit="event.preventDefault(); alert('Registration successful!');">
+                <div class="form-group">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input type="text" id="fullName" class="form-control" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" class="form-control" placeholder="john@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="ticketType" class="form-label">Ticket Type</label>
+                    <select id="ticketType" class="form-control" required>
+                        <option value="" disabled selected>Select a ticket</option>
+                        <option value="general">General Admission - $99</option>
+                        <option value="vip">VIP Pass - $249</option>
+                        <option value="student">Student Pass - $49</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="comments" class="form-label">Additional Comments or Dietary Restrictions</label>
+                    <textarea id="comments" class="form-control" rows="4" placeholder="Let us know if you need any special accommodations..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Complete Registration</button>
+            </form>
+        </div>
+    </main>
+
+    <script src="preloader.js"></script>
+</body>
+</html>

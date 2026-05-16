@@ -1,0 +1,13 @@
+{
+  "name": "cyfernode-5.0",
+  "version": "1.0.0",
+  "description": "Cyfernode 5.0 Website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

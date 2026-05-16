@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Team — Cyfernode 5.0</title>
+<meta name="description" content="Meet the Cyfernode 5.0 team.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --lime:#00ff41;
+  --lime-dim:#00cc33;
+  --black:#000;
+  --surface:#0d0d0d;
+  --border:rgba(255,255,255,0.08);
+  --red:#9b0000;
+  --red-light:#c0392b;
+  --text:#fff;
+  --muted:rgba(255,255,255,0.45);
+  --font:'Pixelify Sans',monospace;
+}
+html,body{height:100%}
+body{
+  background:var(--black);
+  color:var(--text);
+  font-family:var(--font);
+  overflow-x:hidden;
+}
+
+/* ── PRELOADER ────────────────────────── */
+#preloader{
+  position:fixed;inset:0;background:#000;
+  display:flex;align-items:center;justify-content:center;
+  z-index:9999;
+  transition:opacity .6s ease,visibility .6s;
+}
+#preloader.hidden{opacity:0;visibility:hidden}
+.pre-inner{display:flex;flex-direction:column;align-items:center;gap:18px}
+.pre-wordmark{font-size:22px;font-weight:700;color:var(--lime);letter-spacing:4px}
+.pre-track{width:180px;height:2px;background:rgba(255,255,255,.1);overflow:hidden}
+.pre-fill{height:100%;width:0;background:var(--lime);animation:fill .9s ease forwards}
+@keyframes fill{to{width:100%}}
+
+/* ── EXIT ─────────────────────────────── */
+#exit-btn{
+  position:fixed;top:28px;left:28px;z-index:800;
+  font-family:var(--font);font-size:13px;font-weight:500;
+  color:var(--muted);text-decoration:none;
+  display:inline-flex;align-items:center;gap:8px;
+  transition:color .2s;
+  letter-spacing:1px;
+}
+#exit-btn:hover{color:#fff}
+#exit-btn i{font-size:11px}
+
+/* ── PAGE ─────────────────────────────── */
+#page{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+#page.show{opacity:1;transform:none}
+
+
+
+/* ── GRID ─────────────────────────────── */
+.grid-section{max-width:1200px;margin:0 auto;padding:100px 40px 120px}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:16px;
+}
+
+/* ── CARD ─────────────────────────────── */
+.card{
+  position:relative;
+  aspect-ratio:3/4;
+  overflow:hidden;
+  background:var(--surface);
+  border:1px solid var(--border);
+  cursor:pointer;
+  /* subtle pixel-notch corners */
+  clip-path:polygon(
+    0 6px,6px 6px,6px 0,calc(100% - 6px) 0,calc(100% - 6px) 6px,100% 6px,
+    100% calc(100% - 6px),calc(100% - 6px) calc(100% - 6px),calc(100% - 6px) 100%,
+    6px 100%,6px calc(100% - 6px),0 calc(100% - 6px)
+  );
+  transition:transform .3s ease;
+}
+.card:hover{transform:translateY(-4px)}
+
+/* photo fills entire card */
+.card-photo{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .5s ease;
+}
+.card:hover .card-photo{transform:scale(1.04)}
+
+/* bottom info strip – always visible */
+.card-info{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:20px 18px 18px;
+  background:linear-gradient(0deg,rgba(0,0,0,.92) 0%,rgba(0,0,0,.6) 60%,transparent 100%);
+}
+.card-name{font-size:18px;font-weight:600;letter-spacing:-0.3px;line-height:1.2}
+.card-role{font-size:11px;font-weight:400;color:var(--muted);letter-spacing:2px;margin-top:3px}
+
+/* hover overlay with links */
+.card-overlay{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;
+  background:rgba(0,0,0,.75);
+  opacity:0;
+  transition:opacity .3s ease;
+  padding:24px;
+}
+.card:hover .card-overlay{opacity:1}
+.overlay-links{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.ol{
+  width:38px;height:38px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(255,255,255,.25);
+  color:rgba(255,255,255,.7);
+  font-size:15px;
+  text-decoration:none;
+  transition:border-color .2s,color .2s,background .2s;
+  clip-path:polygon(0 4px,4px 4px,4px 0,calc(100% - 4px) 0,calc(100% - 4px) 4px,100% 4px,100% calc(100% - 4px),calc(100% - 4px) calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,4px calc(100% - 4px),0 calc(100% - 4px));
+}
+.ol.lime{border-color:var(--lime);color:var(--lime)}
+.ol.lime:hover{background:var(--lime);color:#000}
+.ol.red-link{border-color:var(--red-light);color:var(--red-light)}
+.ol.red-link:hover{background:var(--red-light);color:#fff}
+.skills-row{display:flex;gap:6px;flex-wrap:wrap;justify-content:center}
+.tag{
+  font-size:9px;font-weight:500;letter-spacing:2px;
+  padding:4px 8px;
+  border:1px solid rgba(255,255,255,.15);
+  color:var(--muted);
+  text-transform:uppercase;
+}
+.tag.lime-tag{border-color:rgba(0,255,65,.3);color:var(--lime)}
+.tag.red-tag{border-color:rgba(155,0,0,.5);color:#e05555}
+
+/* ── PRESIDENT CARD ───────────────────── */
+.card.president{
+  border-color:var(--red);
+  border-width:1px;
+}
+.card.president .card-role{color:rgba(220,60,60,.8)}
+/* animated red gradient edge */
+.card.president::before{
+  content:'';
+  position:absolute;inset:0;
+  border:1px solid transparent;
+  background:linear-gradient(135deg,var(--red-light),var(--red),#3d0000,var(--red-light)) border-box;
+  -webkit-mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);
+  mask:linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:destination-out;
+  mask-composite:exclude;
+  background-size:300% 300%;
+  animation:redBorder 5s ease infinite;
+  z-index:2;pointer-events:none;
+}
+@keyframes redBorder{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.president-badge{
+  position:absolute;top:14px;left:14px;z-index:3;
+  font-size:9px;font-weight:500;letter-spacing:3px;
+  padding:4px 10px;
+  background:var(--red);
+  color:#fff;
+  text-transform:uppercase;
+  clip-path:polygon(0 3px,3px 3px,3px 0,calc(100% - 3px) 0,calc(100% - 3px) 3px,100% 3px,100% calc(100% - 3px),calc(100% - 3px) calc(100% - 3px),calc(100% - 3px) 100%,3px 100%,3px calc(100% - 3px),0 calc(100% - 3px));
+}
+
+/* card entrance */
+.card{opacity:0;transform:translateY(20px);transition:opacity .4s ease,transform .4s ease}
+.card.in{opacity:1;transform:translateY(0)}
+.card:hover{transform:translateY(-4px)!important}
+
+/* ── TOUCH DEVICES: always-visible info, no hover ─ */
+@media (hover:none){
+  /* turn card into a vertical flex column */
+  .card{
+    aspect-ratio:unset;
+    display:flex;
+    flex-direction:column;
+  }
+  .card:hover{transform:none!important}
+  /* photo: static in flow, tall */
+  .card-photo{
+    position:relative;
+    inset:auto;
+    width:100%;
+    height:240px;
+    flex-shrink:0;
+  }
+  .card:hover .card-photo{transform:none}
+  /* name/role strip: static, dark bg */
+  .card-info{
+    position:relative;
+    inset:auto;
+    background:#0d0d0d;
+    padding:14px 18px 0;
+  }
+  /* overlay: always visible, static, light bg, left-aligned */
+  .card-overlay{
+    position:relative;
+    inset:auto;
+    opacity:1;
+    background:#0d0d0d;
+    padding:10px 18px 20px;
+    align-items:flex-start;
+    justify-content:flex-start;
+  }
+  .skills-row{justify-content:flex-start}
+  .overlay-links{justify-content:flex-start}
+  /* president badge stays absolute over photo */
+  .president-badge{position:absolute;top:14px;left:14px}
+}
+
+/* ── RESPONSIVE BREAKPOINTS ───────────── */
+@media(max-width:768px){
+  .grid-section{padding:90px 24px 80px}
+  .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .card-photo{height:200px}
+}
+@media(max-width:480px){
+  .grid{grid-template-columns:1fr}
+  .card-photo{height:260px}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="pre-inner">
+    <div class="pre-wordmark">holy chopped</div>
+    <div class="pre-track"><div class="pre-fill"></div></div>
+  </div>
+</div>
+
+<!-- EXIT -->
+<a href="/" id="exit-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+
+<!-- PAGE -->
+<div id="page">
+
+  <div class="grid-section">
+    <div class="grid">
+
+      <!-- PRESIDENT -->
+      <div class="card president">
+        <div class="president-badge">President</div>
+        <img class="card-photo" src="https://ui-avatars.com/api/?name=President&background=3d0000&color=e05555&size=600&bold=true&font-size=0.18" alt="President">
+        <div class="card-info">
+          <div class="card-name">Your Name</div>
+          <div class="card-role" style="color:rgba(220,60,60,.8);letter-spacing:2px">PRESIDENT</div>
+        </div>
+        <div class="card-overlay">
+          <div class="skills-row">
+            <span class="tag red-tag">LEADERSHIP</span>
+            <span class="tag red-tag">STRATEGY</span>
+            <span class="tag red-tag">VISION</span>
+          </div>
+          <div class="overlay-links">
+            <a href="#" class="ol red-link" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="ol red-link" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" class="ol red-link" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- VICE PRESIDENT -->
+      <div class="card">
+        <img class="card-photo" src="https://ui-avatars.com/api/?name=VP&background=0a0a0a&color=00ff41&size=600&bold=true&font-size=0.25" alt="Vice President">
+        <div class="card-info">
+          <div class="card-name">Your Name</div>
+          <div class="card-role">VICE PRESIDENT</div>
+        </div>
+        <div class="card-overlay">
+          <div class="skills-row">
+            <span class="tag lime-tag">MANAGEMENT</span>
+            <span class="tag lime-tag">COORDINATION</span>
+          </div>
+          <div class="overlay-links">
+            <a href="#" class="ol lime" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="ol lime" title="GitHub"><i class="fab fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- TECHNICAL LEAD -->
+      <div class="card">
+        <img class="card-photo" src="https://ui-avatars.com/api/?name=TL&background=0a0a0a&color=00ff41&size=600&bold=true&font-size=0.25" alt="Technical Lead">
+        <div class="card-info">
+          <div class="card-name">Your Name</div>
+          <div class="card-role">TECHNICAL LEAD</div>
+        </div>
+        <div class="card-overlay">
+          <div class="skills-row">
+            <span class="tag lime-tag">FULL STACK</span>
+            <span class="tag lime-tag">DEVOPS</span>
+          </div>
+          <div class="overlay-links">
+            <a href="#" class="ol lime" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" class="ol lime" title="Portfolio"><i class="fas fa-globe"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DESIGN LEAD -->
+      <div class="card">
+        <img class="card-photo" src="https://ui-avatars.com/api/?name=DL&background=0a0a0a&color=00ff41&size=600&bold=true&font-size=0.25" alt="Design Lead">
+        <div class="card-info">
+          <div class="card-name">Your Name</div>
+          <div class="card-role">DESIGN LEAD</div>
+        </div>
+        <div class="card-overlay">
+          <div class="skills-row">
+            <span class="tag lime-tag">UI / UX</span>
+            <span class="tag lime-tag">BRANDING</span>
+            <span class="tag lime-tag">MOTION</span>
+          </div>
+          <div class="overlay-links">
+            <a href="#" class="ol lime" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="ol lime" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- COMMUNITY MANAGER -->
+      <div class="card">
+        <img class="card-photo" src="https://ui-avatars.com/api/?name=CM&background=0a0a0a&color=00ff41&size=600&bold=true&font-size=0.25" alt="Community">
+        <div class="card-info">
+          <div class="card-name">Your Name</div>
+          <div class="card-role">COMMUNITY MANAGER</div>
+        </div>
+        <div class="card-overlay">
+          <div class="skills-row">
+            <span class="tag lime-tag">OUTREACH</span>
+            <span class="tag lime-tag">SOCIAL MEDIA</span>
+          </div>
+          <div class="overlay-links">
+            <a href="#" class="ol lime" title="Discord"><i class="fab fa-discord"></i></a>
+            <a href="#" class="ol lime" title="X / Twitter"><i class="fab fa-x-twitter"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- MARKETING LEAD -->
+      <div class="card">
+        <img class="card-photo" src="https://ui-avatars.com/api/?name=MK&background=0a0a0a&color=00ff41&size=600&bold=true&font-size=0.25" alt="Marketing">
+        <div class="card-info">
+          <div class="card-name">Your Name</div>
+          <div class="card-role">MARKETING LEAD</div>
+        </div>
+        <div class="card-overlay">
+          <div class="skills-row">
+            <span class="tag lime-tag">GROWTH</span>
+            <span class="tag lime-tag">CONTENT</span>
+          </div>
+          <div class="overlay-links">
+            <a href="#" class="ol lime" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="ol lime" title="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- DEVELOPER -->
+      <div class="card">
+        <img class="card-photo" src="https://ui-avatars.com/api/?name=DV&background=0a0a0a&color=00ff41&size=600&bold=true&font-size=0.25" alt="Developer">
+        <div class="card-info">
+          <div class="card-name">Your Name</div>
+          <div class="card-role">DEVELOPER</div>
+        </div>
+        <div class="card-overlay">
+          <div class="skills-row">
+            <span class="tag lime-tag">REACT</span>
+            <span class="tag lime-tag">NODE.JS</span>
+            <span class="tag lime-tag">PYTHON</span>
+          </div>
+          <div class="overlay-links">
+            <a href="#" class="ol lime" title="GitHub"><i class="fab fa-github"></i></a>
+            <a href="#" class="ol lime" title="Portfolio"><i class="fas fa-globe"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- LOGISTICS -->
+      <div class="card">
+        <img class="card-photo" src="https://ui-avatars.com/api/?name=LG&background=0a0a0a&color=00ff41&size=600&bold=true&font-size=0.25" alt="Logistics">
+        <div class="card-info">
+          <div class="card-name">Your Name</div>
+          <div class="card-role">LOGISTICS HEAD</div>
+        </div>
+        <div class="card-overlay">
+          <div class="skills-row">
+            <span class="tag lime-tag">OPERATIONS</span>
+            <span class="tag lime-tag">PLANNING</span>
+          </div>
+          <div class="overlay-links">
+            <a href="#" class="ol lime" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="ol lime" title="Email"><i class="fas fa-envelope"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+// Preloader
+window.addEventListener('load', function () {
+  setTimeout(function () {
+    document.getElementById('preloader').classList.add('hidden');
+    var page = document.getElementById('page');
+    page.classList.add('show');
+    // Staggered card reveal
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function (c, i) {
+      setTimeout(function () { c.classList.add('in'); }, i * 70 + 200);
+    });
+  }, 950);
+});
+
+// Scroll reveal
+var io = new IntersectionObserver(function (entries) {
+  entries.forEach(function (e) {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  });
+}, { threshold: 0.1 });
+document.querySelectorAll('.card').forEach(function (c) { io.observe(c); });
+</script>
+</body>
+</html>
