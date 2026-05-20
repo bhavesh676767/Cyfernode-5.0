@@ -1,76 +1,67 @@
 /**
  * nav.js — Cyfernode Navigation Router
  * Uses clean URLs via server.js
+ * Optimized with event delegation to support dynamic Framer/React elements.
  */
-document.addEventListener("DOMContentLoaded", function () {
-
+(function () {
     var PROMPTS_URL = "https://www.notion.so/Event-Prompts-902c3288d8d243d1942f2a64582bd5c2?source=copy_link";
 
-    // ── PROMPTS → Notion link ──────────────────────────────
-    // Direct class selectors
-    [".framer-ietie1", ".framer-puj1sb-container", ".framer-13a97tg"].forEach(function (sel) {
-        document.querySelectorAll(sel).forEach(function (el) {
-            el.style.cursor = "pointer";
-            el.addEventListener("click", function (e) {
-                e.preventDefault();
-                window.open(PROMPTS_URL, "_blank");
-            });
-        });
-    });
-
-    // Any element with preset classes whose text is "Prompts"
-    document.querySelectorAll(".framer-styles-preset-1wicq5s, .framer-text").forEach(function (el) {
-        if (el.textContent.trim() === "Prompts") {
-            el.style.cursor = "pointer";
-            el.addEventListener("click", function (e) {
-                e.preventDefault();
-                window.open(PROMPTS_URL, "_blank");
-            });
+    // Dynamic style injection to ensure pointer cursor on hover for clickable Framer classes
+    var style = document.createElement("style");
+    style.innerHTML = `
+        .framer-e4e94c, .framer-ov0d3q, .framer-styles-preset-6hy7sq, .framer-ietie1, .framer-puj1sb-container, .framer-13a97tg, .framer-btg6zl {
+            cursor: pointer !important;
         }
-    });
+    `;
+    if (document.head) {
+        document.head.appendChild(style);
+    } else {
+        document.addEventListener("DOMContentLoaded", function () {
+            document.head.appendChild(style);
+        });
+    }
 
-    // ── TEAM → /team ───────────────────────────────────────
-    // Direct selector — always routes to team
-    document.querySelectorAll(".framer-btg6zl").forEach(function (el) {
-        el.style.cursor = "pointer";
-        el.addEventListener("click", function (e) {
+    // Event delegation on document clicks
+    document.addEventListener("click", function (e) {
+        // Register button check
+        var registerEl = e.target.closest(".framer-e4e94c, .framer-ov0d3q, .framer-styles-preset-6hy7sq");
+        if (registerEl) {
+            e.preventDefault();
+            window.location.href = "/register";
+            return;
+        }
+
+        // Prompts link check
+        var promptsEl = e.target.closest(".framer-ietie1, .framer-puj1sb-container, .framer-13a97tg");
+        if (promptsEl) {
+            e.preventDefault();
+            window.open(PROMPTS_URL, "_blank");
+            return;
+        }
+
+        // Team link check
+        var teamEl = e.target.closest(".framer-btg6zl");
+        if (teamEl) {
             e.preventDefault();
             window.location.href = "/team";
-        });
-    });
-
-    // Text-based selectors
-    [".framer-bixam4"].forEach(function (sel) {
-        document.querySelectorAll(sel).forEach(function (el) {
-            if (el.textContent.trim() === "Team") {
-                el.style.cursor = "pointer";
-                el.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    window.location.href = "/team";
-                });
-            }
-        });
-    });
-
-    document.querySelectorAll(".framer-styles-preset-1wicq5s, .framer-styles-preset-21ogod, .framer-text").forEach(function (el) {
-        if (el.textContent.trim() === "Team") {
-            el.style.cursor = "pointer";
-            el.addEventListener("click", function (e) {
-                e.preventDefault();
-                window.location.href = "/team";
-            });
+            return;
         }
-    });
 
-    // ── REGISTER → /register ───────────────────────────────
-    document.querySelectorAll(".framer-e4e94c, .framer-styles-preset-1wicq5s, .framer-text").forEach(function (el) {
-        if (el.textContent.trim() === "Register") {
-            el.style.cursor = "pointer";
-            el.addEventListener("click", function (e) {
+        // Text-based fallback checks
+        var textEl = e.target.closest(".framer-styles-preset-1wicq5s, .framer-styles-preset-21ogod, .framer-text, .framer-bixam4");
+        if (textEl) {
+            var txt = textEl.textContent.trim().toLowerCase();
+            if (txt === "register") {
                 e.preventDefault();
                 window.location.href = "/register";
-            });
+            } else if (txt === "prompts") {
+                e.preventDefault();
+                window.open(PROMPTS_URL, "_blank");
+            } else if (txt === "team") {
+                e.preventDefault();
+                window.location.href = "/team";
+            }
         }
     });
+})();
 
-});
