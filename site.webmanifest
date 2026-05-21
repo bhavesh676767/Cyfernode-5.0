@@ -1,0 +1,17 @@
+{
+  "name": "Cyfernode 5.0",
+  "short_name": "Cyfernode",
+  "description": "The Annual Inter-School Tech Symposium by CyferNauts, Summer Fields School, Gurugram.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#00ff41",
+  "icons": [
+    {
+      "src": "/0e1a62f8-fec9-4cae-bc86-2298aa63e516.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

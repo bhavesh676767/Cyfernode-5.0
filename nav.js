@@ -14,7 +14,9 @@
         { selector: ".framer-296ee2-container", url: "https://www.youtube.com/@CyferNauts", external: true },
         { selector: ".framer-PDnFr.framer-v-el8xql", url: "https://www.youtube.com/@CyferNauts", external: true },
         { selector: ".framer-puj1sb-container", url: PROMPTS_URL, external: true },
-        { selector: ".framer-ov0d3q", url: "/register", external: false }
+        { selector: ".framer-1kc68j4-container", url: PROMPTS_URL, external: true },
+        { selector: ".framer-ov0d3q", url: "/register", external: false },
+        { selector: "[data-framer-background-image-wrapper]", url: "/register", external: false }
     ];
 
     const TEAM_IMAGES = [
@@ -103,6 +105,7 @@
     var style = document.createElement("style");
     style.innerHTML = `
         .framer-e4e94c, .framer-ov0d3q, .framer-styles-preset-6hy7sq, .framer-ietie1, .framer-puj1sb-container, .framer-13a97tg, .framer-btg6zl, .framer-1kc68j4-container,
+        [data-framer-background-image-wrapper],
         .framer-yshl83-container, .framer-6stad1-container, .framer-296ee2-container, .framer-1hireqr-container, .framer-PDnFr.framer-v-el8xql {
             cursor: pointer !important;
         }
@@ -118,7 +121,7 @@
     // Helper to check if an element is a Team button / link
     function isTeamElement(el) {
         if (!el) return false;
-        if (el.closest(".framer-btg6zl, .framer-1kc68j4-container")) return true;
+        if (el.closest(".framer-btg6zl")) return true;
         
         const textEl = el.closest(".framer-styles-preset-1wicq5s, .framer-styles-preset-21ogod, .framer-text, .framer-bixam4");
         if (textEl && textEl.textContent.trim().toLowerCase() === "team") {
@@ -181,7 +184,7 @@
         }
 
         // Team link check
-        var teamEl = e.target.closest(".framer-btg6zl, .framer-1kc68j4-container");
+        var teamEl = e.target.closest(".framer-btg6zl");
         if (teamEl) {
             e.preventDefault();
             window.location.href = "/team";

@@ -7,7 +7,9 @@ const PRECACHE_ASSETS = [
   '/team',
   '/styles.css',
   '/nav.js',
-  '/invite-widget.js'
+  '/invite-widget.js',
+  '/0e1a62f8-fec9-4cae-bc86-2298aa63e516.png',
+  '/site.webmanifest'
 ];
 
 // Install Event - Pre-cache core shell
