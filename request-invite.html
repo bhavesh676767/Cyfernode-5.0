@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Request Invite — CYFERNODE 5.0</title>
+<meta name="description" content="Request an invitation to Cyfernode 5.0.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+/* ── DESIGN SYSTEM VARIABLES ────────────────────────── */
+:root {
+  --black: #000000;
+  --surface: #0a0a0a;
+  --surface2: #0d0d0d;
+  --border: #222222;
+  --border-active: #ffffff;
+  --text: #ffffff;
+  --muted: #888888;
+  --lime: #00ff41;
+  --font-px: 'Pixelify Sans', monospace;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  min-height: 100vh;
+  background: var(--black);
+  color: var(--text);
+  font-family: var(--font-px);
+  overflow: hidden;
+}
+
+/* Stark Premium Retro Grid */
+body::after {
+  content: '';
+  position: fixed; inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 32px 32px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── PRELOADER ───────────────────────────────────────── */
+#preloader {
+  position: fixed; inset: 0; background: var(--black);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.6s ease, visibility 0.6s;
+}
+#preloader.hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+.pre-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+.pre-wordmark {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--lime);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  text-shadow: 0 0 15px rgba(0, 255, 65, 0.4);
+  animation: preloader-glitch 1.5s infinite steps(2);
+}
+@keyframes preloader-glitch {
+  0%, 100% { text-shadow: 0 0 15px rgba(0, 255, 65, 0.4); }
+  50% { text-shadow: -2px 0 rgba(0, 255, 255, 0.6), 2px 0 rgba(255, 0, 255, 0.6); }
+}
+.pre-track {
+  width: 200px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  border-radius: 2px;
+}
+.pre-fill {
+  height: 100%;
+  width: 0;
+  background: var(--lime);
+  animation: fill 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  box-shadow: 0 0 8px var(--lime);
+}
+@keyframes fill {
+  to { width: 100%; }
+}
+
+/* ── BACK BUTTON ─────────────────────────────────────── */
+#exit-btn {
+  position: fixed; top: 32px; left: 32px; z-index: 800;
+  font-size: 14px; font-weight: 700;
+  color: var(--muted); text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: color 0.2s, transform 0.2s;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+#exit-btn:hover {
+  color: var(--text);
+  transform: translateX(-4px);
+}
+
+/* ── PAGE LAYOUT ─────────────────────────────────────── */
+#page {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+  position: relative;
+  padding: 24px;
+}
+#page.show {
+  opacity: 1;
+  transform: none;
+}
+
+/* ── BOLD INVITE CARD ────────────────────────────────── */
+.invite-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--surface2);
+  border: 4px solid #ffffff;
+  box-shadow: 8px 8px 0px rgba(255, 255, 255, 0.1);
+  padding: 48px 40px;
+  position: relative;
+}
+
+/* Interactive Top Tag */
+.card-tag {
+  position: absolute;
+  top: -4px;
+  left: 24px;
+  background: #ffffff;
+  color: #000000;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 12px;
+  border: 4px solid #ffffff;
+  border-bottom: none;
+  transform: translateY(-100%);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.card-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 36px;
+  text-align: center;
+  border-bottom: 4px solid #1c1c1c;
+  padding-bottom: 20px;
+}
+
+/* Form Styles */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.input-label {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+.input-field {
+  width: 100%;
+  background: #000000;
+  border: 3px solid #222222;
+  color: #ffffff;
+  font-family: var(--font-px);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 16px;
+  outline: none;
+  transition: border-color 0.2s;
+  letter-spacing: 1px;
+}
+.input-field:focus {
+  border-color: #ffffff;
+}
+.input-field::placeholder {
+  color: #444444;
+}
+
+/* Error Alert */
+.form-err {
+  font-size: 13px;
+  font-weight: 700;
+  color: #ff4141;
+  margin-bottom: 28px;
+  border: 3px solid #ff4141;
+  padding: 12px;
+  display: none;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.form-err.show {
+  display: block;
+}
+
+/* Bold Action Button */
+.submit-btn {
+  width: 100%;
+  padding: 18px;
+  background: #ffffff;
+  color: #000000;
+  border: 3px solid #ffffff;
+  font-family: var(--font-px);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, transform 0.1s;
+}
+.submit-btn:hover {
+  background: #000000;
+  color: #ffffff;
+}
+.submit-btn:active {
+  transform: translateY(3px);
+}
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ── SUCCESS STATE ───────────────────────────────────── */
+.success-container {
+  display: none;
+  text-align: center;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 0;
+}
+.success-container.show {
+  display: flex;
+}
+.success-icon {
+  margin-bottom: 24px;
+}
+.success-icon svg {
+  width: 48px;
+  height: 48px;
+  stroke: var(--lime);
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: square;
+  stroke-linejoin: miter;
+}
+.success-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffffff;
+  margin-bottom: 16px;
+}
+.success-desc {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 600px) {
+  .invite-card {
+    padding: 40px 24px;
+  }
+  #exit-btn {
+    top: 24px;
+    left: 24px;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- Preloader Component -->
+<div id="preloader">
+  <div class="pre-inner">
+    <div class="pre-wordmark">CYFERNODE</div>
+    <div class="pre-track"><div class="pre-fill"></div></div>
+  </div>
+</div>
+
+<!-- Back Button -->
+<a href="/" id="exit-btn"><i class="fa-solid fa-arrow-left"></i> BACK</a>
+
+<div id="page">
+  <div class="invite-card">
+    <div class="card-tag">SYSTEM</div>
+    
+    <!-- Input Form Section -->
+    <div id="form-wrap">
+      <h1 class="card-title">REQUEST INVITE</h1>
+      
+      <form id="request-invite-form" novalidate>
+        <div class="input-group">
+          <label class="input-label" for="school-email">OFFICIAL EMAIL</label>
+          <input class="input-field" id="school-email" type="email" placeholder="EMAIL@SCHOOL.EDU" required autocomplete="email" spellcheck="false" />
+        </div>
+
+        <div class="form-err" id="form-err"></div>
+
+        <button class="submit-btn" id="submit-btn" type="submit">SUBMIT</button>
+      </form>
+    </div>
+
+    <!-- Success Section -->
+    <div class="success-container" id="success-wrap">
+      <div class="success-icon">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h2 class="success-title">DISPATCHED</h2>
+      <p class="success-desc">THE OFFICIAL INVITE PACKAGE WILL BE DISPATCHED TO YOUR EMAIL SHORLY.</p>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// Preloader & Page Entrance
+window.addEventListener('load', function () {
+  setTimeout(function () {
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+      preloader.classList.add('hidden');
+    }
+    const page = document.getElementById('page');
+    if (page) {
+      page.classList.add('show');
+    }
+  }, 950);
+});
+
+// Form Submission
+const INVITE_ENDPOINT = 'https://script.google.com/macros/s/AKfycbx7L-RqLlbnpiz19fFvJGWph_QfkLB7xnTnfEZU4zp0pEfcLCrqwixgvHX1N220oWJPYA/exec';
+const form = document.getElementById('request-invite-form');
+const errEl = document.getElementById('form-err');
+const submitBtn = document.getElementById('submit-btn');
+const formWrap = document.getElementById('form-wrap');
+const successWrap = document.getElementById('success-wrap');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const email = document.getElementById('school-email').value.trim();
+
+  // Reset error
+  errEl.textContent = '';
+  errEl.classList.remove('show');
+
+  // Input Validation
+  if (!email) { showErr("EMAIL REQUIRED."); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr("INVALID EMAIL ADDRESS."); return; }
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'SENDING...';
+
+  try {
+    const payload = {
+      email: email,
+      timestamp: new Date().toISOString(),
+      page: 'request-invite-page'
+    };
+
+    await fetch(INVITE_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload),
+      mode: 'no-cors'
+    });
+
+    // Show Success State
+    formWrap.style.display = 'none';
+    successWrap.classList.add('show');
+  } catch (error) {
+    console.error('Invite submission error:', error);
+    showErr('CONNECTION ERROR. TRY AGAIN.');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'SUBMIT';
+  }
+});
+
+function showErr(msg) {
+  errEl.textContent = msg;
+  errEl.classList.add('show');
+}
+</script>
+</body>
+</html>
