@@ -22,6 +22,7 @@ window.addEventListener("click", function (e) {
         { selector: ".framer-puj1sb-container", url: PROMPTS_URL, external: true },
         { selector: ".framer-1kc68j4-container", url: PROMPTS_URL, external: true },
         { selector: ".framer-ov0d3q", url: "/register", external: false },
+        { selector: ".framer-r9nrlt", url: "/register", external: false },
         { selector: "[data-framer-background-image-wrapper]", url: "/register", external: false }
     ];
 
