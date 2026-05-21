@@ -3,6 +3,12 @@
  * Uses clean URLs via server.js
  * Optimized with event delegation to support dynamic Framer/React elements.
  */
+
+// Global click detector - logs ALL clicks
+window.addEventListener("click", function (e) {
+    console.log('[Global Click] Target:', e.target.tagName, e.target.className);
+}, true); // Use capture phase to see if clicks are being blocked
+
 (function () {
     var PROMPTS_URL = "https://www.notion.so/Event-Prompts-902c3288d8d243d1942f2a64582bd5c2";
 
@@ -151,11 +157,14 @@
 
     // Event delegation on document clicks
     document.addEventListener("click", function (e) {
+        console.log('[Navigation] Click detected on:', e.target);
+        
         // Framer social / external link buttons (class → URL pairs)
         for (var i = 0; i < LINK_BUTTONS.length; i++) {
             var btn = LINK_BUTTONS[i];
             var linkEl = e.target.closest(btn.selector);
             if (linkEl) {
+                console.log('[Navigation] Matched link button:', btn.selector, '→', btn.url);
                 e.preventDefault();
                 e.stopPropagation();
                 if (btn.external) {
@@ -170,6 +179,7 @@
         // Register button check (legacy Framer classes)
         var registerEl = e.target.closest(".framer-e4e94c, .framer-styles-preset-6hy7sq");
         if (registerEl) {
+            console.log('[Navigation] Matched register button → /register');
             e.preventDefault();
             window.location.href = "/register";
             return;
@@ -178,6 +188,7 @@
         // Prompts link check (legacy Framer classes)
         var promptsEl = e.target.closest(".framer-ietie1, .framer-13a97tg");
         if (promptsEl) {
+            console.log('[Navigation] Matched prompts link →', PROMPTS_URL);
             e.preventDefault();
             window.open(PROMPTS_URL, "_blank", "noopener,noreferrer");
             return;
@@ -186,6 +197,7 @@
         // Team link check
         var teamEl = e.target.closest(".framer-btg6zl");
         if (teamEl) {
+            console.log('[Navigation] Matched team button → /team');
             e.preventDefault();
             window.location.href = "/team";
             return;
@@ -195,13 +207,17 @@
         var textEl = e.target.closest(".framer-styles-preset-1wicq5s, .framer-styles-preset-21ogod, .framer-text, .framer-bixam4");
         if (textEl) {
             var txt = textEl.textContent.trim().toLowerCase();
+            console.log('[Navigation] Text element detected:', txt);
             if (txt === "register") {
+                console.log('[Navigation] Navigating to /register');
                 e.preventDefault();
                 window.location.href = "/register";
             } else if (txt === "prompts") {
+                console.log('[Navigation] Opening prompts →', PROMPTS_URL);
                 e.preventDefault();
                 window.open(PROMPTS_URL, "_blank");
             } else if (txt === "team") {
+                console.log('[Navigation] Navigating to /team');
                 e.preventDefault();
                 window.location.href = "/team";
             }
