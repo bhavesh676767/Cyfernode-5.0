@@ -399,6 +399,16 @@ form.addEventListener('submit', async (e) => {
       mode: 'no-cors'
     });
 
+    try {
+      await fetch('/api/send-invite-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, name: 'School Coordinator' })
+      });
+    } catch (emailErr) {
+      console.warn('Invite confirmation email failed:', emailErr);
+    }
+
     // Show Success State
     formWrap.style.display = 'none';
     successWrap.classList.add('show');

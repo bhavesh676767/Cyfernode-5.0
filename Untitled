@@ -1,0 +1,5 @@
+# App loads this file automatically (see lib/env.js)
+BREVO_SMTP_USER=ac1d3b001@smtp-brevo.com
+BREVO_SMTP_PASS=xsmtpsib-4418e1130d26c57595b0575c1e407d5fd2c44ec235e80ea2b579b4b5c5cc2764-IpLeSZUtXJO6hxc8
+BREVO_SENDER_NAME=Cyfernode
+SITE_URL=http://localhost:3000
