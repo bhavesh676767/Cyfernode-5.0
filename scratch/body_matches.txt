@@ -1,0 +1,98 @@
+
+==================== CLASS: framer-yshl83-container ====================
+Found 1 occurrences inside <body>
+
+--- Occurrence 1 (char index 253216) ---
+CONTEXT BEFORE:
+alt style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div></div>
+TAG & CONTEXT AFTER:
+<div class="framer-yshl83-container"><div class="framer-HIWmC framer-xc74fm framer-v-xc74fm" data-framer-name="small" data-highlight="true" style="height:100%;width:100%"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" width="3840" height="
+--------------------------------------------------
+
+==================== CLASS: framer-6stad1-container ====================
+Found 1 occurrences inside <body>
+
+--- Occurrence 1 (char index 252600) ---
+CONTEXT BEFORE:
+alt style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div></div>
+TAG & CONTEXT AFTER:
+<div class="framer-6stad1-container"><div class="framer-HIWmC framer-xc74fm framer-v-xc74fm" data-framer-name="small" data-highlight="true" style="height:100%;width:100%"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" width="256" height="2
+--------------------------------------------------
+
+==================== CLASS: framer-296ee2-container ====================
+Found 1 occurrences inside <body>
+
+--- Occurrence 1 (char index 251589) ---
+CONTEXT BEFORE:
+framer-y0nyy0-container"><div class="framer-ahcqg framer-1pcijz framer-v-1pcijz" data-framer-name="default" data-highlight="true" style="height:100%">
+TAG & CONTEXT AFTER:
+<div class="framer-296ee2-container"><div class="framer-HIWmC framer-xc74fm framer-v-xc74fm" data-framer-name="small" data-highlight="true" style="height:100%;width:100%"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" width="980" height="9
+--------------------------------------------------
+
+==================== CLASS: framer-ov0d3q ====================
+Found 1 occurrences inside <body>
+
+--- Occurrence 1 (char index 255354) ---
+CONTEXT BEFORE:
+div class="framer-xrysk0 hidden-72rtr7 hidden-1n0cjf7 hidden-1fe07t7"><div class="framer-10voco3 hidden-72rtr7" tabindex="0"><div class="ssr-variant">
+TAG & CONTEXT AFTER:
+<div class="framer-ov0d3q" data-framer-name="67af7f75-cad1-4e0a-9f74-a96b0c2b3fee" style="width:auto;aspect-ratio:2.9635535307517085"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" width="1301" height="439" sizes="(min-width: 1440px) max(1
+--------------------------------------------------
+
+==================== CLASS: framer-1hireqr-container ====================
+Found 2 occurrences inside <body>
+
+--- Occurrence 1 (char index 609294) ---
+CONTEXT BEFORE:
+tps://framer.link/MvMdlCP" target="_blank" rel="noopener">Register</a><!--/$--></p></div></div><div class="framer-1lm36gk" data-framer-name="Socials">
+TAG & CONTEXT AFTER:
+<div class="framer-1hireqr-container"><div class="framer-PDnFr framer-v-el8xql" tabindex="0" style="display:contents"><!--$--><a ga4xd6ins="Twitter" class="framer-el8xql framer-a0qk21" data-framer-name="Variant 1" style="height:100%;width:100%"><div class="framer-qri5vk-container"><div style="display:contents"></div></div></a><!--/$--></div></div><div class="f
+--------------------------------------------------
+
+--- Occurrence 2 (char index 613276) ---
+CONTEXT BEFORE:
+tps://framer.link/MvMdlCP" target="_blank" rel="noopener">Register</a><!--/$--></p></div></div><div class="framer-1lm36gk" data-framer-name="Socials">
+TAG & CONTEXT AFTER:
+<div class="framer-1hireqr-container"><div class="framer-PDnFr framer-v-el8xql" tabindex="0" style="display:contents"><!--$--><a ga4xd6ins="Twitter" class="framer-el8xql framer-a0qk21" data-framer-name="Variant 1" style="height:100%;width:100%"><div class="framer-qri5vk-container"><div style="display:contents"></div></div></a><!--/$--></div></div><div class="f
+--------------------------------------------------
+
+==================== CLASS: framer-PDnFr ====================
+Found 4 occurrences inside <body>
+
+--- Occurrence 1 (char index 609332) ---
+CONTEXT BEFORE:
+ank" rel="noopener">Register</a><!--/$--></p></div></div><div class="framer-1lm36gk" data-framer-name="Socials"><div class="framer-1hireqr-container">
+TAG & CONTEXT AFTER:
+<div class="framer-PDnFr framer-v-el8xql" tabindex="0" style="display:contents"><!--$--><a ga4xd6ins="Twitter" class="framer-el8xql framer-a0qk21" data-framer-name="Variant 1" style="height:100%;width:100%"><div class="framer-qri5vk-container"><div style="display:contents"></div></div></a><!--/$--></div></div><div class="framer-811ryh-container"><div class="fr
+--------------------------------------------------
+
+--- Occurrence 2 (char index 609680) ---
+CONTEXT BEFORE:
+th:100%"><div class="framer-qri5vk-container"><div style="display:contents"></div></div></a><!--/$--></div></div><div class="framer-811ryh-container">
+TAG & CONTEXT AFTER:
+<div class="framer-PDnFr framer-v-el8xql" tabindex="0" style="display:contents"><!--$--><a ga4xd6ins="Twitter" class="framer-el8xql framer-a0qk21" data-framer-name="Variant 1" style="height:100%;width:100%"><div class="framer-qri5vk-container"><div style="display:contents"></div></div></a><!--/$--></div></div></div></div></div></div><div class="ssr-variant hid
+--------------------------------------------------
+
+--- Occurrence 3 (char index 613314) ---
+CONTEXT BEFORE:
+ank" rel="noopener">Register</a><!--/$--></p></div></div><div class="framer-1lm36gk" data-framer-name="Socials"><div class="framer-1hireqr-container">
+TAG & CONTEXT AFTER:
+<div class="framer-PDnFr framer-v-el8xql" tabindex="0" style="display:contents"><!--$--><a ga4xd6ins="Twitter" class="framer-el8xql framer-a0qk21" data-framer-name="Variant 1" style="height:100%;width:100%"><div class="framer-qri5vk-container"><div style="display:contents"></div></div></a><!--/$--></div></div><div class="framer-811ryh-container"><div class="fr
+--------------------------------------------------
+
+--- Occurrence 4 (char index 613662) ---
+CONTEXT BEFORE:
+th:100%"><div class="framer-qri5vk-container"><div style="display:contents"></div></div></a><!--/$--></div></div><div class="framer-811ryh-container">
+TAG & CONTEXT AFTER:
+<div class="framer-PDnFr framer-v-el8xql" tabindex="0" style="display:contents"><!--$--><a ga4xd6ins="Twitter" class="framer-el8xql framer-a0qk21" data-framer-name="Variant 1" style="height:100%;width:100%"><div class="framer-qri5vk-container"><div style="display:contents"></div></div></a><!--/$--></div></div></div></div></div></div></div></div><div id="templa
+--------------------------------------------------
+
+==================== CLASS: framer-puj1sb-container ====================
+Found 1 occurrences inside <body>
+
+--- Occurrence 1 (char index 396394) ---
+CONTEXT BEFORE:
+></div><div class="framer-1rpwfsn" id="444"></div><div class="framer-dc67uc" id="555"></div></div><div class="framer-6tpt1j"><div class="ssr-variant">
+TAG & CONTEXT AFTER:
+<div class="framer-puj1sb-container"><!--$--><a class="framer-S7FGZ framer-MaomV framer-1aqqjh1 framer-v-1aqqjh1 framer-1hlbm9c" data-border="true" data-framer-name="M - Accent" data-highlight="true" tabindex="0" style="--border-bottom-width:1px;--border-color:var(--token-6b60c4fa-a3b2-4ea3-8e1a-4202c7b68ede, rgba(255, 255, 255, 0.5));--border-left-width:1px;-
+--------------------------------------------------

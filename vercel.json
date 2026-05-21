@@ -1,14 +1,8 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/api/send-registration-email", "destination": "/api/send-registration-email.js" },
-    { "source": "/api/send-invite-email", "destination": "/api/send-invite-email.js" },
     { "source": "/register", "destination": "/register.html" },
     { "source": "/team", "destination": "/team.html" },
     { "source": "/invite", "destination": "/request-invite.html" }
-  ],
-  "headers": [
-    { "source": "/**/*.js", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] },
-    { "source": "/**/*.css", "headers": [{ "key": "Cache-Control", "value": "public, max-age=86400" }] }
   ]
 }
